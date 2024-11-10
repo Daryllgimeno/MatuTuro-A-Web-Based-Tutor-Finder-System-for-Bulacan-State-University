@@ -1,10 +1,14 @@
 const express = require('express');
+const path = require('path');
 const app = express();
-const PORT = 4000;
+const PORT = 4001;
 
 // Set the views directory and the view engine (EJS)
-app.set('views', __dirname + '/views'); // Make sure the "views" folder is in the root of your project
+app.set('views', path.join(__dirname, 'views')); // Ensure the views folder is set correctly
 app.set('view engine', 'ejs');
+
+// Serve static files (CSS, images, JS) from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public'))); // This allows Express to serve static files
 
 // Define your route
 app.get('/', (req, res) => {
